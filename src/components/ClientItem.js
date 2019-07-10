@@ -1,6 +1,6 @@
 import React from "react";
 
-const ClientItem = ({ client, onClientSelect }) => {
+const ClientItem = ({ client }) => {
   return (
     <tr>
       <td data-label="Name">{client.name}</td>
