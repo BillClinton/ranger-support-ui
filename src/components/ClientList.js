@@ -1,10 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
+import { fetchClients } from "../actions";
 import ClientItem from "./ClientItem";
 import ClientTestData from "../apis/ClientTestData";
 
 class ClientList extends React.Component {
+  componentDidMount() {
+    this.props.fetchClients();
+  }
+
   renderList() {
-    return ClientTestData.map(client => {
+    return this.props.clients.map(client => {
       return <ClientItem key={client.id} client={client} />;
     });
   }
@@ -28,4 +34,14 @@ class ClientList extends React.Component {
   }
 }
 
-export default ClientList;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    clients: Object.values(state.clients)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchClients }
+)(ClientList);
