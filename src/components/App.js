@@ -2,8 +2,8 @@ import React from "react";
 import { Router, Route } from "react-router-dom";
 import Header from "./Header";
 //import ClientTestData from "../apis/ClientTestData";
-import ClientList from "./ClientList";
-import ClientForm from "./ClientForm";
+import ClientList from "./clients/ClientList";
+import ClientForm from "./clients/ClientForm";
 import history from "../history";
 
 class App extends React.Component {

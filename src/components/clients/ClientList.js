@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchClients } from "../actions";
+import { fetchClients } from "../../actions";
 import ClientItem from "./ClientItem";
-import ClientTestData from "../apis/ClientTestData";
+import ClientTestData from "../../apis/ClientTestData";
 
 class ClientList extends React.Component {
   componentDidMount() {
