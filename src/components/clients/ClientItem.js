@@ -7,7 +7,7 @@ const ClientItem = ({ client }) => {
       <td data-label="Name">{client.name}</td>
       <td data-label="Contact">{client.contact}</td>
       <td data-label="Contact Number">{client.contact_number}</td>
-      <td data-label="Actions">
+      <td data-label="Actions" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <Link to={`/clients/edit/${client.id}`} className="ui icon button">
           <i aria-hidden="true" className="edit icon" />
         </Link>
