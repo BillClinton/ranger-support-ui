@@ -5,6 +5,7 @@ import Header from "./Header";
 import ClientList from "./clients/ClientList";
 import ClientCreate from "./clients/ClientCreate";
 import ClientEdit from "./clients/ClientEdit";
+import ClientView from "./clients/ClientView";
 import history from "../history";
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
               <Route path="/clients" exact component={ClientList} />
               <Route path="/clients/new/" exact component={ClientCreate} />
               <Route path="/clients/edit/:id" exact component={ClientEdit} />
+              <Route path="/clients/view/:id" exact component={ClientView} />
             </div>
           </div>
         </Router>

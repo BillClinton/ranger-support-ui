@@ -25,17 +25,6 @@ class ClientList extends React.Component {
     );
   }
 
-  renderActions(client) {
-    return (
-      <div className="right floated content">
-        <Link to={`/clients/edit/${client.id}`} className="ui button primary">
-          Edit
-        </Link>
-        <button className="ui button negative">Delete</button>
-      </div>
-    );
-  }
-
   render() {
     return (
       <div>
