@@ -3,18 +3,22 @@ import { Router, Route } from "react-router-dom";
 import Header from "./Header";
 //import ClientTestData from "../apis/ClientTestData";
 import ClientList from "./clients/ClientList";
-import ClientForm from "./clients/ClientForm";
+import ClientCreate from "./clients/ClientCreate";
+import ClientEdit from "./clients/ClientEdit";
 import history from "../history";
 
 class App extends React.Component {
   render() {
     return (
-      <div className="ui container">
+      <div className="ui">
         <Router history={history}>
           <div>
             <Header />
-            <Route path="/clients" component={ClientList} />
-            <Route path="/clients/new" exact component={ClientForm} />
+            <div className="ui container">
+              <Route path="/clients" exact component={ClientList} />
+              <Route path="/clients/new/" exact component={ClientCreate} />
+              <Route path="/clients/edit/:id" exact component={ClientEdit} />
+            </div>
           </div>
         </Router>
       </div>
