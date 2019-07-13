@@ -1,1 +1,2 @@
 export const FETCH_CLIENTS = "FETCH_CLIENTS";
+export const CREATE_CLIENT = "CREATE_CLIENT";
