@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchClients } from "../../actions";
+import { Link } from "react-router-dom";
 import ClientItem from "./ClientItem";
-import ClientTestData from "../../apis/ClientTestData";
 
 class ClientList extends React.Component {
   componentDidMount() {
@@ -15,9 +15,31 @@ class ClientList extends React.Component {
     });
   }
 
+  renderCreate() {
+    return (
+      <div style={{ float: "right", marginBottom: "1em" }}>
+        <Link to="/clients/new" className="ui primary button">
+          Create Client
+        </Link>
+      </div>
+    );
+  }
+
+  renderActions(client) {
+    return (
+      <div className="right floated content">
+        <Link to={`/clients/edit/${client.id}`} className="ui button primary">
+          Edit
+        </Link>
+        <button className="ui button negative">Delete</button>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div>
+        {this.renderCreate()}
         <h3>Clients</h3>
         <table className="ui celled table">
           <thead>
@@ -25,6 +47,7 @@ class ClientList extends React.Component {
               <th>Name</th>
               <th>Contact</th>
               <th>Contact Number</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>{this.renderList()}</tbody>

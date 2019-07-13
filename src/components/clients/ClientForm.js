@@ -1,58 +1,114 @@
 import React from "react";
+import { Field, reduxForm } from "redux-form";
 
-const ClientForm = ({ client }) => {
-  console.log(client);
-  return (
-    <form className="ui form">
-      <h4 className="ui dividing header">Add Client</h4>
-      <div className="sixteen wide field">
-        <label>Name</label>
-        <input type="text" name="name" placeholder="Client Name" />
-      </div>
-      <div className="two fields">
-        <div className="ten wide field">
-          <label>Contact</label>
-          <input type="text" name="contact" placeholder="Contact Name" />
-        </div>
-        <div className="six wide field">
-          <label>Contact Number</label>
-          <input
-            type="text"
-            name="contact_number"
-            placeholder="Contact Number"
-          />
-        </div>
-      </div>
-      <div className="two fields">
-        <div className="ten wide field">
-          <label>Address</label>
-          <input type="text" name="address1" placeholder="Address" />
-        </div>
-        <div className="six wide field">
-          <label>City</label>
-          <input type="text" name="city" placeholder="City" />
-        </div>
-      </div>
-      <div className="three fields">
-        <div className="ten wide field">
-          <label>Address line 2 </label>
-          <input type="text" name="address2" placeholder="Address line 2" />
-        </div>
-        <div className="three wide field">
-          <label>State</label>
-          <input type="text" name="us_state_id" placeholder="State" />
-        </div>
-        <div className="three wide field">
-          <label>Zip</label>
-          <input type="text" name="zip" placeholder="Zip" />
-        </div>
-      </div>
+class ClientForm extends React.Component {
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <span style={{ float: "right" }}>
+          <i aria-hidden="true" className="warning circle icon" />
+          {error}
+        </span>
+      );
+    }
+  }
 
-      <div className="ui button" tabIndex="0">
-        Add
+  renderInput = ({ input, label, meta }) => {
+    const fieldClass = `field ${meta.error && meta.touched ? "error" : ""}`;
+
+    return (
+      <div className={fieldClass}>
+        <label>
+          {label} {this.renderError(meta)}{" "}
+        </label>
+        <input {...input} autoComplete="off" />
       </div>
-    </form>
-  );
+    );
+  };
+
+  onSubmit = formValues => {
+    console.log("submit!!!");
+    this.props.onSubmit(formValues);
+  };
+
+  render() {
+    return (
+      <div>
+        <form
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          className="ui form error"
+        >
+          <div className="sixteen wide field">
+            <Field
+              name="name"
+              component={this.renderInput}
+              label="Client Name"
+            />
+          </div>
+          <div className="two fields">
+            <div className="ten wide field">
+              <Field
+                name="contact"
+                component={this.renderInput}
+                label="Primary Contact Name"
+              />
+            </div>
+            <div className="six wide field">
+              <Field
+                name="contact_number"
+                component={this.renderInput}
+                label="Primary Contact Number"
+              />
+            </div>
+          </div>
+          <div className="two fields">
+            <div className="ten wide field">
+              <Field
+                name="address1"
+                component={this.renderInput}
+                label="Address"
+              />
+            </div>
+            <div className="six wide field">
+              <Field name="city" component={this.renderInput} label="City" />
+            </div>
+          </div>
+          <div className="three fields">
+            <div className="ten wide field">
+              <Field
+                name="address2"
+                component={this.renderInput}
+                label="Address line 2"
+              />
+            </div>
+            <div className="three wide field">
+              <Field
+                name="us_state_id"
+                component={this.renderInput}
+                label="State"
+              />
+            </div>
+            <div className="three wide field">
+              <Field name="zip" component={this.renderInput} label="Zip" />
+            </div>
+          </div>
+          <button className="ui button primary">Submit</button>
+        </form>
+      </div>
+    );
+  }
+}
+
+const validate = formValues => {
+  console.log("validate");
+  const errors = {};
+  if (!formValues.name) {
+    errors.name = "required";
+  }
+  return errors;
 };
 
-export default ClientForm;
+export default reduxForm({
+  form: "client-form",
+  validate
+})(ClientForm);
