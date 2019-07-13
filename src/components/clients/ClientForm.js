@@ -27,7 +27,6 @@ class ClientForm extends React.Component {
   };
 
   onSubmit = formValues => {
-    console.log("submit!!!");
     this.props.onSubmit(formValues);
   };
 
