@@ -20,7 +20,7 @@ class ClientEdit extends React.Component {
     }
     return (
       <div>
-        <h3>Edit a client</h3>
+        <h3>Edit a Client</h3>
         <ClientForm
           initialValues={this.props.client}
           onSubmit={this.onSubmit}

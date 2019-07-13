@@ -12,7 +12,7 @@ class ClientCreate extends React.Component {
   render() {
     return (
       <div>
-        <h3>Create A Client</h3>
+        <h3>Create a Client</h3>
         <ClientForm onSubmit={this.onSubmit} />
       </div>
     );

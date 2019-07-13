@@ -2,25 +2,22 @@ import React from "react";
 import { Router, Route } from "react-router-dom";
 import Header from "./Header";
 //import ClientTestData from "../apis/ClientTestData";
-import ClientList from "./clients/ClientList";
-import ClientCreate from "./clients/ClientCreate";
-import ClientEdit from "./clients/ClientEdit";
-import ClientView from "./clients/ClientView";
+//import ClientList from "./clients/ClientList";
+import ClientsHome from "./clients/ClientsHome";
+//import ClientCreate from "./clients/ClientCreate";
+//import ClientEdit from "./clients/ClientEdit";
+//import ClientView from "./clients/ClientView";
 import history from "../history";
+//import ScrollToTop from "./ScrollToTop";
 
 class App extends React.Component {
   render() {
     return (
       <div className="ui">
-        <Router history={history}>
+        <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
           <div>
             <Header />
-            <div className="ui container">
-              <Route path="/clients" exact component={ClientList} />
-              <Route path="/clients/new/" exact component={ClientCreate} />
-              <Route path="/clients/edit/:id" exact component={ClientEdit} />
-              <Route path="/clients/view/:id" exact component={ClientView} />
-            </div>
+            <ClientsHome />
           </div>
         </Router>
       </div>

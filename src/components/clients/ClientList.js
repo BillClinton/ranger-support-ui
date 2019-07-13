@@ -15,6 +15,10 @@ class ClientList extends React.Component {
     });
   }
 
+  renderCreate1() {
+    return "";
+  }
+
   renderCreate() {
     return (
       <div style={{ float: "right", marginBottom: "1em" }}>
@@ -29,7 +33,7 @@ class ClientList extends React.Component {
     return (
       <div>
         {this.renderCreate()}
-        <h3>Clients</h3>
+        <h3 style={{ marginTop: "0" }}>Clients</h3>
         <table className="ui celled table">
           <thead>
             <tr>
