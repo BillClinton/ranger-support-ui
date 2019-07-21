@@ -2,12 +2,22 @@ import rangerAPI from "../apis/Ranger";
 import history from "../history";
 
 import {
+  TOGGLE_NAVIGATION,
   FETCH_CLIENTS,
   FETCH_CLIENT,
   CREATE_CLIENT,
   EDIT_CLIENT,
   DELETE_CLIENT
 } from "./types";
+
+export const toggleNavigation = () => (dispatch, getState) => {
+  const { expanded } = getState().ui.nav;
+
+  dispatch({
+    type: TOGGLE_NAVIGATION,
+    payload: { expanded: !expanded }
+  });
+};
 
 export const fetchClients = () => async dispatch => {
   const response = await rangerAPI.get("/clients");
