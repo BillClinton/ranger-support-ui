@@ -5,7 +5,6 @@ import ClientForm from "./ClientForm";
 
 class ClientEdit extends React.Component {
   componentDidMount() {
-    console.log("fetching " + this.props.match.params.id);
     this.props.fetchClient(this.props.match.params.id);
   }
 
