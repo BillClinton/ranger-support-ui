@@ -18,7 +18,7 @@ class NavBar extends React.Component {
   renderExpanded() {
     return (
       <div className="ui fixed inverted menu navbar">
-        <div class="ui container">
+        <div className="ui container">
           <Link to="/" className="header item">
             Ranger
           </Link>
