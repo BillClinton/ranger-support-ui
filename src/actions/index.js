@@ -45,7 +45,7 @@ export const createClient = formValues => async (dispatch, getState) => {
     type: CREATE_CLIENT,
     payload: response.data
   });
-  history.push("/");
+  history.push("/clients");
 };
 
 export const editClient = (id, formValues) => async dispatch => {
@@ -56,5 +56,16 @@ export const editClient = (id, formValues) => async dispatch => {
     payload: response.data
   });
 
-  history.push(`/clients/view/${id}`);
+  //history.push(`/clients/view/${id}`);
+  history.push("/clients");
+};
+
+export const deleteClient = id => async dispatch => {
+  await rangerAPI.post("/clients/delete", { id });
+
+  dispatch({
+    type: DELETE_CLIENT,
+    payload: id
+  });
+  history.push("/clients");
 };
