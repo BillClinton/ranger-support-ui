@@ -8,7 +8,7 @@ import ClientView from "./ClientView";
 import ClientDelete from "./ClientDelete";
 import ScrollToTop from "../ScrollToTop";
 
-const ClientsHome = () => {
+const ClientHome = () => {
   return (
     <ScrollToTop>
       <div className="ui container" style={{ paddingTop: "60px" }}>
@@ -24,4 +24,4 @@ const ClientsHome = () => {
   );
 };
 
-export default ClientsHome;
+export default ClientHome;

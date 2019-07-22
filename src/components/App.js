@@ -1,7 +1,7 @@
 import React from "react";
 import { Router } from "react-router-dom";
 import NavBar from "./NavBar";
-import ClientsHome from "./clients/ClientsHome";
+import ClientHome from "./clients/ClientsHome";
 import history from "../history";
 
 class App extends React.Component {
