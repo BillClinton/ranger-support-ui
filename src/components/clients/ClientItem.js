@@ -12,9 +12,9 @@ const ClientItem = ({ client }) => {
         <Link to={`/clients/edit/${client.id}`} className="ui icon button">
           <i aria-hidden="true" className="edit icon" />
         </Link>
-        <button className="ui icon button">
+        <Link to={`/clients/delete/${client.id}`} className="ui icon button">
           <i aria-hidden="true" className="times icon" />
-        </button>
+        </Link>
       </td>
     </tr>
   );
