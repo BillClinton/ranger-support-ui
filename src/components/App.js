@@ -1,7 +1,7 @@
 import React from "react";
 import { Router } from "react-router-dom";
 import NavBar from "./NavBar";
-import ClientHome from "./clients/ClientsHome";
+import ClientHome from "./clients/ClientHome";
 import history from "../history";
 
 class App extends React.Component {
@@ -11,7 +11,7 @@ class App extends React.Component {
         <Router onUpdate={() => window.scrollTo(0, 0)} history={history}>
           <div>
             <NavBar />
-            <ClientsHome />
+            <ClientHome />
           </div>
         </Router>
       </div>
