@@ -6,6 +6,7 @@ import ClientItem from "./ClientItem";
 
 class ClientList extends React.Component {
   componentDidMount() {
+    console.log("mount");
     this.props.fetchClients();
   }
 
@@ -21,10 +22,38 @@ class ClientList extends React.Component {
 
   renderCreate() {
     return (
-      <div style={{ float: "right", marginBottom: "1em" }}>
-        <Link to="/clients/new" className="ui primary button">
-          Create Client
-        </Link>
+      <Link
+        to="/clients/new"
+        aria-label="create client"
+        style={{ marginLeft: "1em" }}
+        className="ui mini icon button"
+      >
+        <i aria-hidden="true" className="plus icon" />
+      </Link>
+    );
+  }
+
+  renderSearch() {
+    return (
+      <div className="ui action input">
+        <input type="text" placeholder="Search..." />
+        <button className="ui icon button">
+          <i className="search icon" />
+        </button>
+      </div>
+    );
+  }
+
+  renderHeader() {
+    return (
+      <div className="ui grid">
+        <div className="six wide column">
+          <h3 style={{ marginTop: "0", display: "inline-block" }}>Clients</h3>
+          {this.renderCreate()}
+        </div>
+        <div className="ten wide right aligned column">
+          {this.renderSearch()}
+        </div>
       </div>
     );
   }
@@ -32,8 +61,7 @@ class ClientList extends React.Component {
   render() {
     return (
       <div>
-        {this.renderCreate()}
-        <h3 style={{ marginTop: "0" }}>Clients</h3>
+        {this.renderHeader()}
         <table className="ui celled table">
           <thead>
             <tr>
@@ -51,7 +79,6 @@ class ClientList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     clients: Object.values(state.clients)
   };
