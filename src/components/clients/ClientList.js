@@ -1,45 +1,97 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchClients } from "../../actions";
+import { fetchClients, searchClients } from "../../actions";
 import { Link } from "react-router-dom";
-import ClientItem from "./ClientItem";
+import MediaQuery from "react-responsive";
+import { Table, Button } from "semantic-ui-react";
 
 class ClientList extends React.Component {
   componentDidMount() {
-    console.log("mount");
     this.props.fetchClients();
   }
 
-  renderList() {
-    return this.props.clients.map(client => {
-      return <ClientItem key={client.id} client={client} />;
-    });
+  onSearchFieldChange = event => {
+    console.log(event.target.value);
+    //this.props.searchClients(event.target.value);
+  };
+
+  renderActionButtons(client) {
+    return (
+      <span style={{ whiteSpace: "nowrap" }}>
+        <Link to={`/clients/edit/${client.id}`} className="ui tiny icon button">
+          <i aria-hidden="true" className="edit icon" />
+        </Link>
+        <Link
+          to={`/clients/delete/${client.id}`}
+          className="ui tiny icon button"
+        >
+          <i aria-hidden="true" className="times icon" />
+        </Link>
+      </span>
+    );
   }
 
-  renderCreate1() {
-    return "";
+  renderRows() {
+    return this.props.clients.map(client => {
+      return (
+        <Table.Row>
+          <Table.Cell>{client.name}</Table.Cell>
+
+          <MediaQuery minWidth={700}>
+            <Table.Cell>{client.contact}</Table.Cell>
+            <Table.Cell>{client.contact_number}</Table.Cell>
+          </MediaQuery>
+
+          {/* TODO: put this style in a css class */}
+          <Table.Cell>{this.renderActionButtons(client)}</Table.Cell>
+        </Table.Row>
+      );
+    });
   }
 
   renderCreate() {
     return (
-      <Link
-        to="/clients/new"
-        aria-label="create client"
-        style={{ marginLeft: "1em" }}
-        className="ui mini icon button"
-      >
-        <i aria-hidden="true" className="plus icon" />
-      </Link>
+      <MediaQuery minWidth={700}>
+        {matches => {
+          if (matches) {
+            return (
+              <Button
+                icon="plus"
+                size="mini"
+                as={Link}
+                to="/clients/new"
+                aria-label="create client"
+                style={{ marginLeft: "1em" }}
+              />
+            );
+          } else {
+            return (
+              <div className="floating-action-button">
+                <Button
+                  circular
+                  icon="plus"
+                  size="huge"
+                  color="black"
+                  as={Link}
+                  to="/clients/new"
+                />
+              </div>
+            );
+          }
+        }}
+      </MediaQuery>
     );
   }
 
   renderSearch() {
     return (
-      <div className="ui action input">
-        <input type="text" placeholder="Search..." />
-        <button className="ui icon button">
-          <i className="search icon" />
-        </button>
+      <div className="ui left icon input">
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={this.onSearchFieldChange}
+        />
+        <i className="horizontally flipped search icon" />
       </div>
     );
   }
@@ -58,22 +110,30 @@ class ClientList extends React.Component {
     );
   }
 
+  renderTable() {
+    return (
+      <Table basic unstackable>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <MediaQuery minWidth={700}>
+              <Table.HeaderCell>Contact</Table.HeaderCell>
+              <Table.HeaderCell>Contact #</Table.HeaderCell>
+            </MediaQuery>
+            <Table.HeaderCell align="center">Actions</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>{this.renderRows()}</Table.Body>
+      </Table>
+    );
+  }
+
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.renderHeader()}
-        <table className="ui celled table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Contact</th>
-              <th>Contact Number</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderList()}</tbody>
-        </table>
-      </div>
+        {this.renderTable()}
+      </React.Fragment>
     );
   }
 }
@@ -86,5 +146,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchClients }
+  { fetchClients, searchClients }
 )(ClientList);
