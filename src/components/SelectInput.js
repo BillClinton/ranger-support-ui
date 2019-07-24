@@ -18,12 +18,6 @@ class SelectInput extends React.Component {
     }
   }
 
-  countryOptions = [
-    { key: "af", value: "af", flag: "af", text: "Afghanistan" },
-    { key: "ax", value: "ax", flag: "ax", text: "Aland Islands" },
-    { key: "al", value: "al", flag: "al", text: "Albania" }
-  ];
-
   render() {
     const { input, label, meta, options } = this.props;
     const fieldClass = `field ${meta.error && meta.touched ? "error" : ""}`;
