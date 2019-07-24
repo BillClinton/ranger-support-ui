@@ -34,7 +34,7 @@ class ClientList extends React.Component {
   renderRows() {
     return this.props.clients.map(client => {
       return (
-        <Table.Row>
+        <Table.Row key={client.id}>
           <Table.Cell>{client.name}</Table.Cell>
 
           <MediaQuery minWidth={700}>
