@@ -22,6 +22,12 @@ class SelectInput extends React.Component {
     const { input, label, meta, options } = this.props;
     const fieldClass = `field ${meta.error && meta.touched ? "error" : ""}`;
 
+    /*
+     * value lost on blur issue:
+     * https://github.com/JedWatson/react-select/issues/805
+     */
+    const onBlurFix = () => input.onBlur(input.value.value);
+
     return (
       <div className={fieldClass}>
         <label>
@@ -35,6 +41,7 @@ class SelectInput extends React.Component {
             options={options}
             value={input.value}
             onChange={(param, data) => input.onChange(data.value)}
+            onBlur={onBlurFix}
             placeholder={`Select ${label}`}
           />
         </Form.Field>
