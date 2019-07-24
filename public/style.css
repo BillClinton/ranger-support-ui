@@ -1,0 +1,19 @@
+.ui.basic.table {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+.ui.basic.table th {
+  font-size: 0.8em;
+  opacity: 0.5;
+}
+.floating-action-button {
+  bottom: 0px;
+  position: fixed;
+  margin: 1em;
+  right: 0px;
+}
+.floating-action-button .ui.icon.button > .icon {
+  opacity: 1;
+  font-weight: 100;
+}
