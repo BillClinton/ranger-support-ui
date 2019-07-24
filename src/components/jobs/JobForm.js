@@ -49,17 +49,14 @@ class JobForm extends React.Component {
               label="Job Title"
             />
           </div>
-          <div className="sixteen wide field">
-            <Field
-              name="client_id"
-              component={SelectInput}
-              label="Client"
-              options={this.props.clientOptions}
-            />
-          </div>
           <div className="two fields">
             <div className="ten wide field">
-              <Field name="hours" component={this.renderInput} label="Hours" />
+              <Field
+                name="client_id"
+                component={SelectInput}
+                label="Client"
+                options={this.props.clientOptions}
+              />
             </div>
             <div className="six wide field">
               <Field
@@ -70,22 +67,29 @@ class JobForm extends React.Component {
               />
             </div>
           </div>
-          <div className="sixteen wide field">
-            <Field
-              name="job_status_id"
-              component={SelectInput}
-              label="Status"
-              options={this.props.jobStatusOptions}
-            />
+          <div className="three fields">
+            <div className="four wide field">
+              <Field name="hours" component={this.renderInput} label="Hours" />
+            </div>
+            <div className="six wide field">
+              <Field
+                name="hours_type_id"
+                component={SelectInput}
+                label="Type"
+                options={this.props.hoursTypeOptions}
+              />
+            </div>
+            <div className="six wide field">
+              <Field
+                name="job_status_id"
+                component={SelectInput}
+                label="Status"
+                options={this.props.jobStatusOptions}
+              />
+            </div>
           </div>
-          <div className="sixteen wide field">
-            <Field
-              name="hours_type_id"
-              component={SelectInput}
-              label="Type"
-              options={this.props.hoursTypeOptions}
-            />
-          </div>
+          <div className="sixteen wide field" />
+          <div className="sixteen wide field" />
           <button className="ui button primary">Submit</button>
         </form>
       </div>
@@ -96,8 +100,23 @@ class JobForm extends React.Component {
 const validate = formValues => {
   console.log("validate");
   const errors = {};
-  if (!formValues.name) {
-    errors.name = "required";
+  if (!formValues.title) {
+    errors.title = "required";
+  }
+  if (!formValues.client_id) {
+    errors.client_id = "required";
+  }
+  if (!formValues.hours) {
+    errors.hours = "required";
+  }
+  if (!formValues.staff_id) {
+    errors.staff_id = "required";
+  }
+  if (!formValues.hours_type_id) {
+    errors.hours_type_id = "required";
+  }
+  if (!formValues.job_status_id) {
+    errors.job_status_id = "required";
   }
   return errors;
 };
